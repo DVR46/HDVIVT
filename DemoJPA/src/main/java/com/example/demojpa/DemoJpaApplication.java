@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class DemoJpaApplication {
 
     public static void main(String[] args) throws Exception{
-//        SpringApplication.run(DemoJpaApplication.class, args);
+       SpringApplication.run(DemoJpaApplication.class, args);
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 //        Scanner sc = new Scanner(System.in);
