@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel = "stylesheet" href = "Home.css" type = "text/css">
+</head>
+<body>
+
+<section id = "body_page">
+    <aside id ="left_side">
+
+    </aside>
+    <div id = "content">
+        <div id = "product_type">
+            <!--        <h1>Product Type</h1>-->
+            <div id = "products">
+                <div  th:each = "odList: ${odList}" id = "box">
+                    <div class = "infor-product">
+                        <h1 th:text = "${odList.getProductEntity().getName()}"></h1>
+                        <p th:text = "${odList.getProductEntity().getCatalog()}" class = "des" ></p>
+                        <p th:text = "${odList.getProductEntity().getPrice()}" class= "price" >$</p>
+                        <div class = "modify-product">
+<!--                            <a class = "detail-button" href = "">Detail</a>-->
+                            <a class = "edit-button" th:text = "${odList.getQuantity()}"  ></a>
+                            <a class = "delete-button" th:href = "@{cart/remove-product(productId=${odList.getProductEntity().getId()})}" >Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside id ="right_side">
+
+    </aside>
+</section>
+</body>
+</html>

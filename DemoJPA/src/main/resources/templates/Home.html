@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel = "stylesheet" href = "Home.css" type = "text/css">
+</head>
+<body>
+<header>
+    <div id = "menu_container">
+        <a href = "home"><img src = "https://tainghe.com.vn/media/brand/soundpeats.png"></a>
+        <form action = "search-product" method = "get">
+            <input type = "text" placeholder="Search" name = "name" required>
+            <button type = "submit">
+                <i class = "search_icon"></i>
+            </button>
+        </form>
+        <ul>
+<!--            <c:if test="${user.getId() > 0}">-->
+<!--                <c:set var="display"  value="none"></c:set>-->
+<!--                <li>${user.getUserName() }</li>-->
+<!--                <li><a href = "user-log-out">Log Out</a></li>-->
+<!--                <c:if test="${user.getRole() == 1}">-->
+<!--                    <li style = "color: red">ADMIN</li>-->
+<!--                </c:if>-->
+<!--            </c:if>-->
+<!--            <li style = "display: ${display}"><a href = "user-login" >Login</a></li>-->
+<!--            <li style = "display: ${display}"><a href = "user-register">Register</a></li>-->
+            <li><a href = "cart" >Cart<i class = "cart_icon"></i></a></li>
+            <li><a href = "">Messages<i class = "mess_icon"></i></a></li>
+        </ul>
+    </div>
+</header>
+
+<nav id = "catalog">
+<!--    <ul>-->
+<!--        <c:forEach items = "${catalog}" var = "catalog">-->
+<!--            <li><a href = "">${catalog.getName()}</a></li>-->
+<!--        </c:forEach>-->
+<!--    </ul>-->
+</nav>
+
+<section id = "body_page">
+    <aside id ="left_side">
+
+    </aside>
+
+    <div id = "content">
+        <div id = "product_type">
+    <!--        <h1>Product Type</h1>-->
+            <div id = "products">
+                    <div  th:each = "productList: ${productList}" id = "box" href = "">
+                        <div class = "infor-product">
+                            <h1 th:text = "${productList.getName()}"></h1>
+                            <p th:text = "${productList.getCatalog()}" class = "des" ></p>
+                            <p th:text = "${productList.getPrice()}" class= "price" >$</p>
+                            <div class = "modify-product">
+<!--                                <a class = "detail-button" href = "">Detail</a>-->
+                                <a class = "edit-button" th:href = "@{cart/add-to-cart(productId=${productList.getId()})}">Add</a>
+                                <a class = "delete-button" href = "" >Delete</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <aside id ="right_side">
+
+    </aside>
+</section>
+
+<footer>
+    <div class = "page_num">
+        <ul>
+            <th:block th:each="i : ${#numbers.sequence(1, pageNum, 1)}">
+<!--            <c:set  var = "index" value = "1"></c:set>-->
+                <li><a th:href = "@{home(limit = ${limit}, index=${i})}" th:text="${i}"></a></li>
+            </th:block>
+        </ul>
+    </div>
+</footer>
+</body>
+</html>
